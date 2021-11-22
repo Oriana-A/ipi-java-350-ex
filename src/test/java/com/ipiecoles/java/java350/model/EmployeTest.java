@@ -19,6 +19,35 @@ class EmployeTest {
 
         //Then
         Assertions.assertThat(nbAnnees).isEqualTo(0);
+    }
 
+    @Test
+    void getNombreAnneAncienneteWithDateEmbaucheInThePast(){
+        //Given
+        Employe employe = new Employe("Zero", "Toto", "T000000",LocalDate.now().minusYears(2),1550.50,2,1.2);
+        //When
+        Integer nbAnnees = employe.getNombreAnneeAnciennete();
+        //Then
+        Assertions.assertThat(nbAnnees).isEqualTo(2);
+    }
+
+    @Test
+    void getNombreAnneeAncieneteWithDateEmbaucheInTheFuture(){
+        //Given
+        Employe employe = new Employe("D'Arc", "Jeanne", "N2000",LocalDate.now().plusYears(3),1550.50,2,1.2);
+        //When
+        Integer nbAnnees = employe.getNombreAnneeAnciennete();
+        //Then
+        Assertions.assertThat(nbAnnees).isEqualTo(0);
+    }
+
+    @Test
+    void getNombreAnneeAncieneteWithDateNull(){
+        //Given
+        Employe employe = new Employe("D'Arc", "Jeanne", "N2000",null,1550.50,2,1.2);
+        //When
+        Integer nbAnnees = employe.getNombreAnneeAnciennete();
+        //Then
+        Assertions.assertThat(nbAnnees).isNull();
     }
 }
