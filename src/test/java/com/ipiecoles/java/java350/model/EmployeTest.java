@@ -52,8 +52,9 @@ class EmployeTest {
 
     @ParameterizedTest(name = "Prime pour un employé de matricule {0}, ancienneté {1}, performance {2}, tempspartiel {3} : {4}")
     @CsvSource({
-            "'T12346', 0, 0,1.0, 300.0",
-            "'T12346', 0, 1,1.0, 1000.0",
+            "'T12346', 0,0,1.0, 300.0",
+            "'T12346', 0,1,1.0, 1000.0",
+            "'T12346', 0, ,1.0, 1000.0",
             "'T12346', 3,1, 1.0, 1300.0",
             "'T12346', 1,0, 1.0, 400.0",
             "'T12346', 1,0, 1.0, 400.0",
