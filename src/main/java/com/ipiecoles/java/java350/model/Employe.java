@@ -71,10 +71,12 @@ public class Employe {
         int i1 = d.isLeapYear() ? 365 : 366;
         int i2 = 104;
         switch (LocalDate.of(d.getYear(),1,1).getDayOfWeek()){
-            case THURSDAY: if(d.isLeapYear()) i2 =  i2 + 1; break;
+            case THURSDAY: if(d.isLeapYear()) i2 =  i2 + 1;
+                break;
             case FRIDAY:
                 if(d.isLeapYear()) i2 =  i2 + 2;
                 else i2 =  i2 + 1;
+                break;
             case SATURDAY:i2 = i2 + 1;
                 break;
         }
