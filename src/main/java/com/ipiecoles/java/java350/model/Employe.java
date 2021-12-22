@@ -1,7 +1,5 @@
 package com.ipiecoles.java.java350.model;
 
-import com.ipiecoles.java.java350.exception.EmployeException;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -50,13 +48,11 @@ public class Employe {
      * @return
      */
     public Integer getNombreAnneeAnciennete() {
-        if(dateEmbauche == null){
-            return null;
+        //Date d'embauche antérieure à la date du jour
+        if(dateEmbauche != null && dateEmbauche.isBefore(LocalDate.now())){
+            return LocalDate.now().getYear() - dateEmbauche.getYear();
         }
-        if(dateEmbauche.isAfter(LocalDate.now())){
-            return 0;
-        }
-        return LocalDate.now().getYear() - dateEmbauche.getYear();
+        return 0;
     }
 
     public Integer getNbConges() {
@@ -118,19 +114,7 @@ case SATURDAY:var = var + 1;
     }
 
     //Augmenter salaire
-    public double augmenterSalaire(double pourcentage){
-        if(this.salaire!=null && this.salaire>0 && pourcentage>0){
-            double augmentation=this.salaire*pourcentage/100;
-            this.salaire = this.salaire+augmentation;
-        }
-        if(this.salaire<=0){
-            this.salaire = 0.0;
-        }
-        if(pourcentage<=0){
-            this.salaire = 0.0;
-        }
-        return this.salaire;
-    }
+    //public void augmenterSalaire(double pourcentage){}
 
     public Long getId() {
         return id;
