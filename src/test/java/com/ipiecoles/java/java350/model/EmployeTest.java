@@ -84,7 +84,7 @@ class EmployeTest {
             "3000,-1.5,0.0",
             "-1200.0, 5,0.0"
     })
-    public void augmenterSalaire(Double salaire, Double pourcentage, Double salaireAugmenté) {
+    public void augmenterSalaire(Double salaire, Double pourcentage, Double salaireAugmente) {
         //Given
         Employe employe = new Employe("Doe", "John", "C3615", LocalDate.now().minusYears(3), salaire, 1, 1.2);
 
@@ -92,6 +92,6 @@ class EmployeTest {
         Double salaireWithAugmentation = employe.augmenterSalaire(pourcentage);
 
         //Then
-        Assertions.assertThat(salaireWithAugmentation).isEqualTo(salaireAugmenté);
+        Assertions.assertThat(salaireWithAugmentation).isEqualTo(salaireAugmente);
     }
 }
