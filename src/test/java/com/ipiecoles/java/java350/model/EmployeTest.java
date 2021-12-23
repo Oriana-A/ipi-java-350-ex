@@ -65,7 +65,7 @@ class EmployeTest {
             "'M12347', 6,0, 1.0, 2300.0",
             "'M12347', 2,1, 1.0, 1900.0"
     })
-    public void getPrimeAnnuelle(String matricule, Integer nbAnneeAnciennete, Integer performance, Double tempsPartiel, Double primeCalculee) {
+    void getPrimeAnnuelle(String matricule, Integer nbAnneeAnciennete, Integer performance, Double tempsPartiel, Double primeCalculee) {
         //Given
         Employe employe = new Employe("Doe", "John", matricule, LocalDate.now().minusYears(nbAnneeAnciennete), Entreprise.SALAIRE_BASE, performance, tempsPartiel);
 
@@ -74,5 +74,25 @@ class EmployeTest {
 
         //Then
         Assertions.assertThat(prime).isEqualTo(primeCalculee);
+    }
+
+
+    @ParameterizedTest(name = "Employé avec un salaire {0}, un pourcentage {1}, salaireAugmenté {2}")
+    @CsvSource({
+            "1550.50,2,1581.51",
+            "0.0,30,0.0",
+            "3000,-1.5,0.0",
+            "-1200.0,5,0.0",
+            "4300.0,0, 0.0",
+    })
+    void augmenterSalaire(Double salaire, Double pourcentage, Double salaireAugmente) {
+        //Given
+        Employe employe = new Employe("Doe", "John", "C3615", LocalDate.now().minusYears(3), salaire, 1, 1.2);
+
+        //When
+        Double salaireWithAugmentation = employe.augmenterSalaire(pourcentage);
+
+        //Then
+        Assertions.assertThat(salaireWithAugmentation).isEqualTo(salaireAugmente);
     }
 }

@@ -66,18 +66,21 @@ public class Employe {
     }
 
     public Integer getNbRtt(LocalDate d){
-        int i1 = d.isLeapYear() ? 365 : 366;int var = 104;
+        int i1 = d.isLeapYear() ? 365 : 366;
+        int i2 = 104;
         switch (LocalDate.of(d.getYear(),1,1).getDayOfWeek()){
-        case THURSDAY: if(d.isLeapYear()) var =  var + 1; break;
-        case FRIDAY:
-        if(d.isLeapYear()) var =  var + 2;
-        else var =  var + 1;
-case SATURDAY:var = var + 1;
-                    break;
+            case THURSDAY: if(d.isLeapYear()) i2 =  i2 + 1;
+                break;
+            case FRIDAY:
+                if(d.isLeapYear()) i2 =  i2 + 2;
+                else i2 =  i2 + 1;
+                break;
+            case SATURDAY:i2 = i2 + 1;
+                break;
         }
         int monInt = (int) Entreprise.joursFeries(d).stream().filter(localDate ->
                 localDate.getDayOfWeek().getValue() <= DayOfWeek.FRIDAY.getValue()).count();
-        return (int) Math.ceil((i1 - Entreprise.NB_JOURS_MAX_FORFAIT - var - Entreprise.NB_CONGES_BASE - monInt) * tempsPartiel);
+        return (int) Math.ceil((i1 - Entreprise.NB_JOURS_MAX_FORFAIT - i2 - Entreprise.NB_CONGES_BASE - monInt) * tempsPartiel);
     }
 
     /**
@@ -116,7 +119,19 @@ case SATURDAY:var = var + 1;
     }
 
     //Augmenter salaire
-    //public void augmenterSalaire(double pourcentage){}
+    public double augmenterSalaire(double pourcentage){
+        if(this.salaire>0 && pourcentage>0){
+            double augmentation=this.salaire*pourcentage/100;
+            this.salaire = this.salaire+augmentation;
+        }
+        if(this.salaire<=0){
+            this.salaire = 0.0;
+        }
+        if(pourcentage<=0){
+            this.salaire = 0.0;
+        }
+        return this.salaire;
+    }
 
     public Long getId() {
         return id;
