@@ -83,7 +83,7 @@ class EmployeTest {
             "0.0,30,0.0",
             "3000,-1.5,0.0",
             "-1200.0,5,0.0",
-            "4300.0,0, 0.0"
+            "4300.0,0, 0.0",
     })
     void augmenterSalaire(Double salaire, Double pourcentage, Double salaireAugmente) {
         //Given
