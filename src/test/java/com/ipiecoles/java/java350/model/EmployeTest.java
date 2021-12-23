@@ -63,7 +63,7 @@ class EmployeTest {
             "'M12347', 1,1, 0.5, 900.0",
             "'M12347', 0,1, 0.5, 850.0",
             "'M12347', 6,0, 1.0, 2300.0",
-            "'M12347', 2,1, 1.0, 1900.0"
+            "'M12347', 2,1, 1.0, 1900.0",
     })
     void getPrimeAnnuelle(String matricule, Integer nbAnneeAnciennete, Integer performance, Double tempsPartiel, Double primeCalculee) {
         //Given
@@ -95,4 +95,6 @@ class EmployeTest {
         //Then
         Assertions.assertThat(salaireWithAugmentation).isEqualTo(salaireAugmente);
     }
+
+
 }
